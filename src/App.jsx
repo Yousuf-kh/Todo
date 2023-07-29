@@ -109,6 +109,10 @@ const App = () => {
     setEdit(false);
   };
 
+  const deleteTodo = async (id) => {
+    await axios.delete(`https://jsonplaceholder.typicode.com/posts/${id}`);
+    setPosts(posts.filter((c) => c.id !== id));
+  };
   return (
     <Box>
       <Container>
@@ -149,7 +153,9 @@ const App = () => {
                     <Button onClick={() => editHaldler(c)} colorScheme="yellow">
                       edit
                     </Button>
-                    <Button colorScheme="red">delte</Button>
+                    <Button onClick={() => deleteTodo(c.id)} colorScheme="red">
+                      delte
+                    </Button>
                   </HStack>
                 </Flex>
               ))}
